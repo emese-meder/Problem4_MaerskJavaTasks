@@ -10,40 +10,25 @@ Please write the unit tests for your solution using any of the unit testing fram
 
  */
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Objects;
-
-import static java.lang.Character.isWhitespace;
-
 public class RemoveDuplicates {
 
-    public <T> T[] removeDuplicates(T[] array){
-        //ArrayList<T> newList = new ArrayList<>();
+    public <T> T[] removeDuplicates(T[] array) {
+        ArrayLength arrayLength = new ArrayLength();
         String newList = "";
-        int count = 0;
-        T[] newArray = (T[]) new  Object[count];
-        for (int i = 0; i < array.length; i++){
-            for (int j = array.length - 1; j > i; j--){
-                if (!array[i].equals(array[j])  && i != j && !newList.contains(array[i].toString())){
-                    newList = newList + array[i] + " ";
-                    count++;
-                    System.out.println(count);
-                    newArray = (T[]) new  Object[count];
-                    newArray[count-1] = array[i];
-                }
+        int count = arrayLength.getLengthWithoutDuplicates(array);
+        T[] newArray = (T[]) new Object[count];
+        int k = 0;
+        int i = 0;
+        while (i < array.length && k<count ) {
+            if (!newList.contains(array[i].toString())) {
+                //System.out.println(array[i]);
+                newList = newList + array[i] + " ";
+                newArray[k] = array[i];
+                k++;
             }
+            i++;
 
         }
-
-
-
-        System.out.println( newList);
-        System.out.println(count);
-
-
         return newArray;
     }
-
 }
